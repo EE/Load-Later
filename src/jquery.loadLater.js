@@ -9,7 +9,7 @@
 
     $.fn.loadLater = function (options, callback) {
 
-        if (typeof(options) ===  "function"){
+        if (typeof(options) === "function") {
             callback = options;
             options = {};
         }
@@ -36,7 +36,10 @@
                     self.html(elementSettings.selector ?
                         $("<div>").append(jQuery.parseHTML(responseText)).find(elementSettings.selector) :
                         responseText);
-                    callback.call(this, self);
+
+                    if (typeof(callback) === "function") {
+                        callback.call(this, self);
+                    }
                 });
 
             return this;
