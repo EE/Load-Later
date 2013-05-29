@@ -76,4 +76,4 @@ and initialize plugin with option
 With this each DOM element will have this selector set as default
 
 ### License
-Released under the [MIT license](http://www.opensource.org/licenses/MIT).
+Released under the [MIT license](https://github.com/EE/Load-Later/blob/master/LICENSE).

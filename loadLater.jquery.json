@@ -16,6 +16,6 @@
         "jquery": ">=1.2.3"
     },
     "description": "jQuery plugin for partial loading non essential DOM elements",
-    "keywords": ["ajax", "load", "event", "jquery", "dom", "html5", "json"],
+    "keywords": ["ajax", "load", "event", "jquery", "dom"],
     "homepage": "https://github.com/EE/Load-Later"
 }
