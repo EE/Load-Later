@@ -4,7 +4,8 @@
     // Load Later default settings:
     var defaultSettings = {
         url: null,
-        selector: null
+        selector: null,
+        timer: null
     };
 
     $.fn.loadLater = function (options, callback) {
@@ -29,21 +30,42 @@
 
             var self = $(this);
 
-            $.ajax({
-                url: elementSettings.url,
-                dataType: 'html'
-            }).done(function (responseText) {
-                    self.html(elementSettings.selector ?
-                        $("<div>").append(jQuery.parseHTML(responseText)).find(elementSettings.selector) :
-                        responseText);
-
-                    if (typeof(callback) === "function") {
-                        callback.call(this, self);
-                    }
-                });
+            // check if timer option was given, null is default value
+            if (elementSettings.timer != null) {
+                // simple check if timer option is a valid number
+                var timer = parseInt(elementSettings.timer);
+                // if it is a number
+                if (timer != 'NaN') {
+                    // create timer which will call load function
+                    setTimeout(function () {
+                        load(self, elementSettings, callback);
+                    }, timer);
+                }
+            } else {
+                load(self, elementSettings, callback);
+            }
 
             return this;
         });
+    }
+
+    // private function that executes ajax loading of partial
+    function load(self, elementSettings, callback) {
+
+        $.ajax({
+            url: elementSettings.url,
+            dataType: 'html'
+        }).done(function (responseText) {
+
+                self.html(elementSettings.selector ?
+                    $("<div>").append($.parseHTML(responseText)).find(elementSettings.selector) :
+                    responseText);
+
+                // check if callback is a function
+                if (typeof callback === "function") {
+                    callback.call(this, self);
+                }
+            });
     }
 
 })(jQuery);
