@@ -21,8 +21,24 @@ Just a example
 
     {
         url: '/partials/footer.html',
-        selector: 'div:first'
+        selector: 'div:first',
+        timer: 5000
     }
+
+### Timer option
+
+Timer option allows you to decide after how many milliseconds content will be loaded.
+
+    $('.load-later').loadLater({
+        timer: 5000
+    });
+
+or
+
+    <div class="load-later" data-url="SOME URL HERE" data-timer="5000"></div>
+
+Remember that timer that was set as data attribute has higher priority than one provided with json option.
+    This can be convinient when you want to set global timer to e.g. 5000ms but one element should be loaded faster.
 
 ### Callback function
 
