@@ -1,5 +1,5 @@
 (function ($) {
-    'use strict';
+    "use strict";
 
     // Load Later default settings:
     var defaultSettings = {
@@ -19,7 +19,9 @@
 
         return this.each(function () {
 
-            var elementSettings = $.extend({}, globalSettings, $(this).data());
+            var elementSettings = $.extend({}, globalSettings, $(this).data()),
+                self,
+                timer;
 
             if (elementSettings.url == null) {
 
@@ -28,14 +30,14 @@
                 return this;
             }
 
-            var self = $(this);
+            self = $(this);
 
             // check if timer option was given, null is default value
             if (elementSettings.timer != null) {
                 // simple check if timer option is a valid number
-                var timer = parseInt(elementSettings.timer);
+                timer = parseInt(elementSettings.timer, 10);
                 // if it is a number
-                if (timer != 'NaN') {
+                if (timer !== "NaN") {
                     // create timer which will call load function
                     setTimeout(function () {
                         load(self, elementSettings, callback);
@@ -47,14 +49,14 @@
 
             return this;
         });
-    }
+    };
 
     // private function that executes ajax loading of partial
     function load(self, elementSettings, callback) {
 
         $.ajax({
             url: elementSettings.url,
-            dataType: 'html'
+            dataType: "html"
         }).done(function (responseText) {
 
                 self.html(elementSettings.selector ?
