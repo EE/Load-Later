@@ -1,13 +1,6 @@
 (function ($) {
     "use strict";
 
-    // Load Later default settings:
-    var defaultSettings = {
-        url: null,
-        selector: null,
-        timer: null
-    };
-
     $.fn.loadLater = function (options, callback) {
 
         if (typeof(options) === "function") {
@@ -15,7 +8,7 @@
             options = {};
         }
 
-        var globalSettings = $.extend({}, defaultSettings, options);
+        var globalSettings = $.extend({}, $.fn.loadLater.defaults, options);
 
         return this.each(function () {
 
@@ -69,5 +62,11 @@
                 }
             });
     }
+
+    $.fn.loadLater.defaults = {
+        url: null,
+        selector: null,
+        timer: null
+    };
 
 })(jQuery);

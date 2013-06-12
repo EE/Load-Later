@@ -91,5 +91,11 @@ and initialize plugin with option
 
 With this each DOM element will have this selector set as default
 
+### Even more global settings
+
+    $.loadLater.defaults.timer = 1000;
+
+    $('.load-later').loadLater();
+
 ### License
 Released under the [MIT license](https://github.com/EE/Load-Later/blob/master/LICENSE).
